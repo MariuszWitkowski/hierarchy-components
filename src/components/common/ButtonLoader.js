@@ -5,6 +5,7 @@ import Loader from "./Loader";
 
 const ButtonLoader = ({ children, loader = false, ...buttonProps }) => (
   <Button variant="contained" color="primary" {...buttonProps}>
+    {console.log("loader", loader)}
     {loader && <Loader />}
     {children}
   </Button>

@@ -11,7 +11,7 @@ class Hierarchy extends React.Component {
     return (
       <StoreProvider>
         <Card>
-          <CardContent>TODO:</CardContent>
+          <CardContent>TODO: Context</CardContent>
           <CardActions>
             <StoreConsumer>
               {({ loader, addTodo }) => (
