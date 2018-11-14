@@ -1,22 +1,28 @@
 import React from "react";
+import Card from "@material-ui/core/Card";
+import CardActions from "@material-ui/core/CardActions";
+import CardContent from "@material-ui/core/CardContent";
 
 import ButtonLoader from "./ButtonLoader";
+import { StoreProvider, StoreConsumer } from "./StoreProvider";
 
 class Hierarchy extends React.Component {
-  state = {
-    loader: false
-  };
-
-  addTodo = () => {
-    this.setState(prevState => ({ loader: !prevState.loader }));
-  };
-
   render() {
-    const { loader } = this.state;
     return (
-      <ButtonLoader loader={loader} onClick={this.addTodo}>
-        Click Me!
-      </ButtonLoader>
+      <StoreProvider>
+        <Card>
+          <CardContent>TODO:</CardContent>
+          <CardActions>
+            <StoreConsumer>
+              {({ loader, addTodo }) => (
+                <ButtonLoader loader={loader} onClick={addTodo}>
+                  Click Me!
+                </ButtonLoader>
+              )}
+            </StoreConsumer>
+          </CardActions>
+        </Card>
+      </StoreProvider>
     );
   }
 }
