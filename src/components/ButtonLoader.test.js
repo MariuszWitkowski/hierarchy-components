@@ -8,41 +8,43 @@ import {
 
 import ButtonLoader from "./ButtonLoader";
 
-afterEach(cleanup); // <-- add this
+describe("ButtonLoader", () => {
+  afterEach(cleanup); // <-- add this
 
-test("Click in button", () => {
-  const buttonText = "Click Me";
-  const mockClick = jest.fn();
+  test("Click in button", () => {
+    const buttonText = "Click Me";
+    const mockClick = jest.fn();
 
-  const { getByText } = render(
-    <ButtonLoader onClick={mockClick}>{buttonText}</ButtonLoader>
-  );
-  fireEvent.click(getByText(buttonText));
+    const { getByText } = render(
+      <ButtonLoader onClick={mockClick}>{buttonText}</ButtonLoader>
+    );
+    fireEvent.click(getByText(buttonText));
 
-  expect(mockClick).toHaveBeenCalled();
-});
+    expect(mockClick).toHaveBeenCalled();
+  });
 
-test("Hide Loader in ButtonLoader", () => {
-  const buttonText = "Click Me";
-  const loader = false;
+  test("Hide Loader in ButtonLoader", () => {
+    const buttonText = "Click Me";
+    const loader = false;
 
-  const { container, getByTestId } = render(
-    <ButtonLoader loader={loader}>{buttonText}</ButtonLoader>
-  );
-  // const loaderNode = waitForElement(() => !getByTestId('loader'))
-  const loaderNode = container.querySelector(`[data-testid="loader"]`); // FIXME: znaleźć lepsze wyświetlanie ukrytego elementu
+    const { container, getByTestId } = render(
+      <ButtonLoader loader={loader}>{buttonText}</ButtonLoader>
+    );
+    // const loaderNode = waitForElement(() => !getByTestId('loader'))
+    const loaderNode = container.querySelector(`[data-testid="loader"]`); // FIXME: znaleźć lepsze wyświetlanie ukrytego elementu
 
-  expect(loaderNode).toBe(null);
-});
+    expect(loaderNode).toBe(null);
+  });
 
-test("Show Loader in ButtonLoader", () => {
-  const buttonText = "Click Me";
-  const loader = true;
+  test("Show Loader in ButtonLoader", () => {
+    const buttonText = "Click Me";
+    const loader = true;
 
-  const { getByTestId } = render(
-    <ButtonLoader loader={loader}>{buttonText}</ButtonLoader>
-  );
-  const loaderNode = getByTestId("loader");
+    const { getByTestId } = render(
+      <ButtonLoader loader={loader}>{buttonText}</ButtonLoader>
+    );
+    const loaderNode = getByTestId("loader");
 
-  expect(loaderNode).not.toBe(null);
+    expect(loaderNode).not.toBe(null);
+  });
 });

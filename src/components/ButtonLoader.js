@@ -1,12 +1,13 @@
 import React from "react";
+import Button from "@material-ui/core/Button";
 
 import Loader from "./Loader";
 
 const ButtonLoader = ({ children, loader = false, ...buttonProps }) => (
-  <button {...buttonProps}>
+  <Button variant="contained" color="primary" {...buttonProps}>
     {loader && <Loader />}
     {children}
-  </button>
+  </Button>
 );
 
 export default ButtonLoader;
