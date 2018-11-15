@@ -14,10 +14,13 @@ class Hierarchy extends React.Component {
           <CardContent>TODO: Context</CardContent>
           <CardActions>
             <StoreConsumer>
-              {({ loader, addTodo }) => (
-                <ButtonLoader loader={loader} onClick={addTodo}>
-                  Click Me!
-                </ButtonLoader>
+              {({ loader }) => (
+                <div>{loader ? "isLoading" : "not loading"}</div>
+              )}
+            </StoreConsumer>
+            <StoreConsumer>
+              {({ addTodo }) => (
+                <ButtonLoader onClick={addTodo}>Click Me!</ButtonLoader>
               )}
             </StoreConsumer>
           </CardActions>
